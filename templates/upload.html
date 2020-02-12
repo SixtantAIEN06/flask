@@ -1,14 +1,41 @@
 {% extends "base.html" %}
 
-{% block title %}Flasky{% endblock %}
+{% block title %}upload{% endblock %}
 
 {% block page_content %}
 
   <h1>檔案上傳示例</h1>
-  <form action="" enctype='multipart/form-data' method='POST' id="target">
-    <input type="file" id='sub' name="file">
+  <form action="" enctype='multipart/form-data' method='POST' id="target"  onsubmit="return checkForm()">
+    <input type="file" class='sub' name="file">
     <input id="upload" type="submit"  value="上傳">
     
+       
+      
   </form>
-
+  {% if get_picture =="success" %}
+  <span class="label label-success">上傳成功</span>
+  {% elif get_picture =="fail"%}
+  <span class="label label-danger">上傳失敗</span>
+    
+    
+    
+  {% endif %}
   {% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+
+    <script>
+       function checkForm() {
+        $.post('/upload', $(form1), function (data) {
+            console.log(data.data);
+            console.log('fffffffffffff')
+
+            
+        });
+
+
+        //return false;
+    }
+    </script>
+{% endblock %}

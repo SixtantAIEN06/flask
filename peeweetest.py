@@ -19,11 +19,26 @@ class  Classified ( Model ):
     class  Meta : 
         database  =  db
 
+class  DlibSort ( Model ): 
+    ywt =  IntegerField (default=0) 
+    hao  =  IntegerField (default=0)
+    ford  =  IntegerField (default=0)
+    leo =  IntegerField (default=0) 
+    cj  =  IntegerField (default=0)
+    aa  =  IntegerField (default=0)
+    unknown  =  IntegerField (default=0)
+    image_path= TextField()
+
+    class  Meta : 
+        database  =  db
+
+
 
 
 
 if __name__ == '__main__':
-    Classified.create_table () 
+    Classified.create_table ()
+    DlibSort.create_table() 
 
 
 '''

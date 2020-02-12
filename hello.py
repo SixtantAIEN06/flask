@@ -66,13 +66,20 @@ def user(name):
 
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
+  get_picture='nothing'
   if request.method == 'POST':
+    get_picture='fail'
     f = request.files['file']
-    basepath = os.path.dirname(__file__) # 當前檔案所在路徑
-    upload_path = os.path.join(basepath, 'static/uploads',secure_filename(f.filename)) 
-    f.save(upload_path)
-    return redirect(url_for('upload'))
-  return render_template('upload.html')
+    if f:
+        basepath = os.path.dirname(__file__) # 當前檔案所在路徑
+        upload_path = os.path.join(basepath, 'static/uploads',secure_filename(f.filename)) 
+        f.save(upload_path)
+        get_picture='success'
+        data1={'data':'success'}
+        return data1
+    #return redirect(url_for('upload'))
+  print(get_picture)
+  return render_template('upload.html', get_picture=get_picture)
 
 '''
 @app.route('/write_session')
